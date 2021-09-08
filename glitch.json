@@ -1,6 +1,6 @@
 {
-    "install": "pip3 install --user opencv-python;rm -rf .cache;pip3 install --user aiortc;rm -rf .cache;pip3 install --user aiohttp;rm -rf .cache;pip3 install -r requirements.txt;rm -rf .cache",
-    "start": "PYTHONUNBUFFERED=true python3 server.py",
+    "install": "pip3.7 install --no-cache-dir --prefix=/tmp -r requirements.txt",
+    "start": "PYTHONUNBUFFERED=true PYTHONPATH=/tmp/lib/python3.7/site-packages python3.7 server.py",
     "watch": {
       "ignore": [
         "\\.pyc$"

@@ -1,4 +1,4 @@
-# webopencv &middot; [demo](webopencv.glitch.me) &middot; [1-click setup](https://glitch.com/edit/#!/remix/webopencv)
+# webopencv &middot; [demo](https://webopencv.glitch.me) &middot; [1-click setup](https://glitch.com/edit/#!/remix/webopencv)
 Stream webcam from a webpage to a server-side OpenCV Python script. This **gives you the ability to work with a webcam in Python, without installing anything on your computer**. All it takes is 1 click to demo or spin up an editable copy.
 
 🎥 Live demo: [webopencv.glitch.me](https://webopencv.glitch.me)

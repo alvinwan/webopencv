@@ -160,6 +160,15 @@ async def on_shutdown(app):
     pcs.clear()
 
 
+def get_web_app():
+    app = web.Application()
+    app.on_shutdown.append(on_shutdown)
+    app.router.add_get("/", index)
+    app.router.add_get("/client.js", javascript)
+    app.router.add_post("/offer", offer)
+    return app
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="WebRTC audio / video / data-channels demo"
@@ -183,9 +192,5 @@ if __name__ == "__main__":
     else:
         ssl_context = None
 
-    app = web.Application()
-    app.on_shutdown.append(on_shutdown)
-    app.router.add_get("/", index)
-    app.router.add_get("/client.js", javascript)
-    app.router.add_post("/offer", offer)
+    app = get_web_app()
     web.run_app(app, access_log=None, port=args.port, ssl_context=ssl_context)

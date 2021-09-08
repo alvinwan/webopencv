@@ -1,3 +1,11 @@
+/**
+ * 
+ * Originally from `aiortc` example. With modifications for wcv2.
+ * 
+ * https://github.com/aiortc/aiortc/tree/main/examples/server
+ * 
+ */
+
 // get DOM elements
 var dataChannelLog = document.getElementById('data-channel'),
     iceConnectionLog = document.getElementById('ice-connection-state'),

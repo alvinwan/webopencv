@@ -1,5 +1,5 @@
 {
-    "install": "pip3 install --user -r requirements.txt",
+    "install": "pip3 install --user opencv-python;rm -rf .cache;pip3 install --user aiortc;rm -rf .cache;pip3 install --user aiohttp;rm -rf .cache;pip install -r requirements.txt",
     "start": "PYTHONUNBUFFERED=true python3 server.py",
     "watch": {
       "ignore": [

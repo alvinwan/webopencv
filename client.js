@@ -41,8 +41,6 @@ function createPeerConnection() {
     pc.addEventListener('track', function(evt) {
         if (evt.track.kind == 'video')
             document.getElementById('video').srcObject = evt.streams[0];
-        else
-            document.getElementById('audio').srcObject = evt.streams[0];
     });
 
     return pc;
@@ -69,11 +67,6 @@ function negotiate() {
     }).then(function() {
         var offer = pc.localDescription;
         var codec;
-
-        codec = document.getElementById('audio-codec').value;
-        if (codec !== 'default') {
-            offer.sdp = sdpFilterCodec('audio', codec, offer.sdp);
-        }
 
         codec = document.getElementById('video-codec').value;
         if (codec !== 'default') {
@@ -145,8 +138,7 @@ function start() {
     }
 
     var constraints = {
-        audio: document.getElementById('use-audio').checked,
-        video: false
+        video: document.getElementById('use-video').checked
     };
 
     if (document.getElementById('use-video').checked) {
@@ -162,7 +154,7 @@ function start() {
         }
     }
 
-    if (constraints.audio || constraints.video) {
+    if (constraints.video) {
         if (constraints.video) {
             document.getElementById('media').style.display = 'block';
         }

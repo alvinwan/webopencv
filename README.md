@@ -1,11 +1,13 @@
 # webopencv
 Using WebRTC, stream live video feed from a webpage to a server-side OpenCV Python script. This is primarily written for educational purposes, **giving students the ability to work with a webcam, without installing anything on their computers**. Most importantly, this library enables larger-scale, remote computer vision courses to make use of the webcam via a 1-click WebOpenCV setup. Also see [Why Use WebOpenCV?](#why-use-webopencv) below.
 
+➡️ View the live demo at [webopencv.glitch.me](https://webopencv.glitch.me).
+
 created by [Alvin Wan](https://alvinwan.com)
 
 ## Getting Started
 
-**100% Remote Setup**: View the live demo at [webopencv.glitch.me](https://webopencv.glitch.me). To get started with the code, simply [fork the webopencv Glitch project](https://glitch.com/edit/#!/remix/vr101-nature-step2-starter).
+**100% Remote Setup**: [Fork the webopencv Glitch project](https://glitch.com/edit/#!/remix/vr101-nature-step2-starter) to start a new, editable Glitch project.
 
 **Local Setup**: To setup locally on your machine instead, install the Python package.
 

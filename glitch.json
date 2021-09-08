@@ -1,6 +1,6 @@
 {
     "install": "pip3.7 install --no-cache-dir --prefix=/tmp -r requirements.txt",
-    "start": "PYTHONUNBUFFERED=true PYTHONPATH=/tmp/lib/python3.7/site-packages python3.7 server.py",
+    "start": "PYTHONUNBUFFERED=true PYTHONPATH=/tmp/lib/python3.7/site-packages python3.7 app.py",
     "watch": {
       "ignore": [
         "\\.pyc$"

@@ -1,11 +1,7 @@
-from .aio import app
-from . import transforms
+from . import aio, flsk, transforms
 
 
-class App:
-    def __init__(self):
-        self.app = app
-
+class Base:
     def transform(self, name):
         """Register a new transformation for the video stream."""
         def decorator(transform):
@@ -13,5 +9,10 @@ class App:
             return transform
         return decorator
 
-    def run(self, *args, **kwargs):
-        self.app.run(*args, **kwargs)
+
+class WebApplication(Base, aio.App):
+    pass
+
+
+class Flask(Base, flsk.App):
+    pass

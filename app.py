@@ -12,7 +12,7 @@ import ssl
 import wcv2
 
 
-app = wcv2.App()
+app = wcv2.WebApplication() # or wcv2.Flask() - make sure to remove `access_log=None` below
 
 
 @app.transform('Cartoon')

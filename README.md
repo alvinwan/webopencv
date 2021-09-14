@@ -36,7 +36,7 @@ Create a new file `app.py`.
 ```
 import wcv2
 
-app = wcv2.App()
+app = wcv2.WebApplication()
 
 @app.transform('Print Shape')
 def face_swap(frame):

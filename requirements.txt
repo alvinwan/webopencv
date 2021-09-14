@@ -1,3 +1,4 @@
 aiohttp
 aiortc
 opencv-python
+flask[async]

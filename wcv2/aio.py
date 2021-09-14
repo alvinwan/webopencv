@@ -2,10 +2,23 @@
 
 from aiohttp import web
 from .app import on_offer, on_shutdown
-from .utils import ROOT, logger
+from .utils import ROOT
 
 import json
 import os
+
+
+def get_static_resource(path, **kwargs):
+    content = open(os.path.join(ROOT, path), "r").read()
+    return web.Response(text=content, **kwargs)
+
+
+async def index(request):
+    return get_static_resource("templates/index.html", content_type="text/html")
+
+
+async def javascript(request):
+    return get_static_resource("static/client.js", content_type="application/javascript")
 
 
 async def offer(request):
@@ -19,22 +32,15 @@ async def offer(request):
     )
 
 
-def static(path, **kwargs):
-    async def page(request):
-        content = open(os.path.join(ROOT, path), "r").read()
-        return web.Response(text=content, **kwargs)
-    return page
-
-
 class App(web.Application):
+
+    def __init__(self):
+        super().__init__()
+        self.on_shutdown.append(on_shutdown)
+        self.router.add_get("/", index)
+        self.router.add_get("/client.js", javascript)
+        self.router.add_post("/offer", offer)
 
     def run(self, *args, **kwargs):
         """Light wrapper around aiohttp.web.run_app"""
         return web.run_app(self, *args, **kwargs)
-
-
-app = App()
-app.on_shutdown.append(on_shutdown)
-app.router.add_get("/", static("static/index.html", content_type="text/html"))
-app.router.add_get("/client.js", static("static/client.js", content_type="application/javascript"))
-app.router.add_post("/offer", offer)

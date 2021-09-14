@@ -91,7 +91,7 @@ async def on_offer(params, sender):
     return pc
 
 
-async def on_shutdown(app):
+async def on_shutdown(app=None):
     # close peer connections
     coros = [pc.close() for pc in pcs]
     await asyncio.gather(*coros)

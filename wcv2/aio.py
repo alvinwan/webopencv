@@ -38,7 +38,7 @@ class VideoTransformTrack(MediaStreamTrack):
 
             # run image transformation
             transform = transforms.get_transform(self.transform)
-            img = transform(img)
+            img = transform(img, frame)
 
             # Write back to video frame, with timestamp
             new_frame = VideoFrame.from_ndarray(img, format="bgr24")

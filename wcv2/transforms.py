@@ -20,7 +20,7 @@ def get_transform(name):
     return _transforms[name]
 
 
-def transform_cartoon(img, frame=None):
+def cartoon(img):
     # prepare color
     img_color = cv2.pyrDown(cv2.pyrDown(img))
     for _ in range(6):
@@ -44,12 +44,12 @@ def transform_cartoon(img, frame=None):
     return img
 
 
-def transform_edge_detection(img, frame=None):
+def edge_detection(img):
     img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
     return img
 
 
-def transform_rotate(img, frame=None):
+def rotate(img):
     rows, cols, _ = img.shape
     M = cv2.getRotationMatrix2D((cols / 2, rows / 2), frame.time * 45, 1)
     img = cv2.warpAffine(img, M, (cols, rows))

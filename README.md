@@ -34,12 +34,13 @@ pip install webopencv
 Create a new file `app.py`.
 
 ```
-from wcv2 import App
+import wcv2
 
-app = App()
+app = wcv2.App()
 
-@app.transform('Swap Faces')
+@app.transform('Print Shape')
 def face_swap(frame):
+    print(frame.shape)
     return frame
 
 if __name__ == '__main__':

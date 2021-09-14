@@ -1,4 +1,5 @@
-"""
+"""Example `wcv2` application, with some bells and whistles.
+
 Equivalent to `aiortc` example, using `wcv2` utilities.
 
 https://github.com/aiortc/aiortc/tree/main/examples/server

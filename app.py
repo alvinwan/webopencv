@@ -27,7 +27,7 @@ def edge_detection(img, frame):
 
 @app.transform('Rotate')
 def rotate(img, frame):
-    return wcv2.transforms.edge_detection(img, frame)
+    return wcv2.transforms.rotate(img, frame)
 
 
 if __name__ == "__main__":

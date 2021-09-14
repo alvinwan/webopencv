@@ -5,19 +5,23 @@ _transforms = {}
 
 
 def add_transform(name, transform):
-    _transforms[name] = transform
+    _transforms[_normalize_transform_name(name)] = transform
 
 
 def remove_transform(name):
-    _transforms.pop(name)
+    _transforms.pop(_normalize_transform_name(name))
 
 
 def get_transform_names():
-    return _transforms.keys()
+    return list(map(_normalize_transform_name, _transforms))
 
 
 def get_transform(name):
-    return _transforms[name]
+    return _transforms[_normalize_transform_name(name)]
+
+
+def _normalize_transform_name(name):
+    return name.lower().replace(" ", "-")
 
 
 def cartoon(img, frame):

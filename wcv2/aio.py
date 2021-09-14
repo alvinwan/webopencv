@@ -1,17 +1,11 @@
 """aiohttp-powered web application backend"""
 
 from aiohttp import web
-from aiortc import MediaStreamTrack, RTCPeerConnection, RTCSessionDescription
-from av import VideoFrame
 from .app import on_offer, on_shutdown
-from . import transforms
 from .utils import ROOT, logger
 
-import asyncio
 import json
-import logging
 import os
-import uuid
 
 
 async def offer(request):

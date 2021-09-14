@@ -1,5 +1,6 @@
 from .aio import app
-from .transforms import add_transform
+from . import transforms
+
 
 class App:
     def __init__(self):
@@ -8,7 +9,7 @@ class App:
     def transform(self, name):
         """Register a new transformation for the video stream."""
         def decorator(transform):
-            add_transform(name, transform)
+            transforms.add_transform(name, transform)
             return transform
         return decorator
 

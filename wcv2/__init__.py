@@ -1,14 +1,16 @@
-from aiohttp import web
-from .app import get_web_app
+from .app import app
 
+class App:
+    def __init__(self, backend='flask'):
+        self.app = app
+        self.transforms = {}
 
-class VideoCapture:
-    def __init__(self, on_image=None):
-        self.app = get_web_app()
-        self.on_image = on_image
+    def transform(self, name):
+        """Register a new transformation for the video stream."""
+        def decorator(f):
+            self.transforms[name] = f
+            return f
+        return decorator
 
-    def launch(self):
-        return web.run_app(
-            get_web_app(),
-            port=8000
-        )
+    def run(self, *args, **kwargs):
+        self.app.run()

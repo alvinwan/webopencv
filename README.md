@@ -34,15 +34,16 @@ pip install webopencv
 Create a new file `app.py`.
 
 ```
-from aiohttp import web
-from wcv2 import app
+from wcv2 import App
 
+app = App()
+
+@app.transform('Swap Faces')
+def face_swap(frame):
+    return frame
 
 if __name__ == '__main__':
-    web.run_app(
-        app.get_web_app(),
-        port=8000
-    )
+    app.run()
 ```
 
 Then, run the file.

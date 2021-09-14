@@ -1,10 +1,10 @@
-import wcv2
+from wcv2 import App
 
+app = App()
 
-def on_image(frame):
+@app.transform('Swap Faces')
+def face_swap(frame):
     return frame
 
-
 if __name__ == '__main__':
-    cap = wcv2.VideoCapture(on_image=on_image)
-    cap.launch()
+    app.run()

@@ -19,29 +19,28 @@ This library addresses both concerns by launching a web server. This client webp
 1. Setup a free, remote instance via [glitch.com](https://glitch.com) just by clicking on a link. No computer setup necessary.
 2. Only requires well-established web-based camera access. If your computer runs Google Meet, you can use this.
 
-This library is effectively the [demo from `aiortc`](https://github.com/aiortc/aiortc/tree/main/examples/server), except with a few niceties that (1) make it easy for any student to get started, with a few lines of code and (2) some connector code that minimizes the difference between `cv2` and its online cousin (this package), `wcv2`.
+The library mainly exists to provide a few niceties that (1) make it easy for any student to get started, with a few lines of code and (2) make it easy to try `cv2` manipulations on a live feed.
 
 ## Getting Started
 
-For the 1-click WebOpenCV setup, [fork on Glitch](https://glitch.com/edit/#!/remix/webopencv).
+**For the 1-click WebOpenCV setup, [fork on Glitch](https://glitch.com/edit/#!/remix/webopencv).**
 
 Alternatively, to setup locally on your machine instead, install the Python package.
 
-```
+```bash
 pip install webopencv
 ```
 
 Create a new file `app.py`.
 
-```
+```python
 import wcv2
 
 app = wcv2.WebApplication()
 
-@app.transform('Print Shape')
-def face_swap(frame):
-    print(frame.shape)
-    return frame
+@app.transform('Hello')
+def helloworld(img, frame):
+    return img
 
 if __name__ == '__main__':
     app.run()
@@ -49,6 +48,27 @@ if __name__ == '__main__':
 
 Then, run the file.
 
-```
+```bash
 python app.py
 ```
+
+This launches a web server by default at `https://localhost:8080`. Navigate to that URL, and hit "Start" to see the demo in action.
+
+## Transforms
+
+Create *transforms*, or hooks that process images in a real-time video feed. Each transform takes in an
+
+1. `img`: numpy array image
+2. `frame`: `VideoFrame` object that additionally contains metadata, like time
+
+Like with Flask routes, you can register transforms using a decorator. Add whatever processing you would like to the transform, and return the image at the end. For example, the below adds a "cinematic" crop to the live feed.
+
+```python
+@app.transform('Cinematic')
+def cinematic(img, frame):
+    h, w, _ = img.shape
+    img[-w//4:] = 0
+    img[:w//4] = 0
+```
+
+Acknowledgments: The core logic is borrowed from the `aiortc` official server example.

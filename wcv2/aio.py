@@ -3,7 +3,7 @@
 from aiohttp import web
 from aiortc import MediaStreamTrack, RTCPeerConnection, RTCSessionDescription
 from av import VideoFrame
-from . import examples
+from . import transforms
 
 import asyncio
 import json
@@ -32,16 +32,15 @@ class VideoTransformTrack(MediaStreamTrack):
     async def recv(self):
         frame = await self.track.recv()
         
-        if self.transform:
+        if self.transform in transforms.get_transform_names():
+            # convert from video frame to numpy array
             img = frame.to_ndarray(format="bgr24")
 
-            if self.transform == "cartoon":
-                img = examples.transform_cartoon(img)
-            elif self.transform == "edges":
-                img = examples.transform_edges(img)
-            elif self.transform == "rotate":
-                img = examples.transform_rotate(img)
+            # run image transformation
+            transform = transforms.get_transform(self.transform)
+            img = transform(img)
 
+            # Write back to video frame, with timestamp
             new_frame = VideoFrame.from_ndarray(img, format="bgr24")
             new_frame.pts = frame.pts
             new_frame.time_base = frame.time_base

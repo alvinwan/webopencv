@@ -1,6 +1,25 @@
 import cv2
 
 
+_transforms = {}
+
+
+def add_transform(name, transform):
+    _transforms[name] = transform
+
+
+def remove_transform(name):
+    _transforms.pop(name)
+
+
+def get_transform_names():
+    return _transforms.keys()
+
+
+def get_transform(name):
+    return _transforms[name]
+
+
 def transform_cartoon(img, frame=None):
     # prepare color
     img_color = cv2.pyrDown(cv2.pyrDown(img))

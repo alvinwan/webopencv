@@ -1,6 +1,6 @@
-"""Example `wcv2` application, with some bells and whistles.
+"""Example `webopencv` application, with some bells and whistles.
 
-Equivalent to `aiortc` example, using `wcv2` utilities.
+Equivalent to `aiortc` example, using `webopencv` utilities.
 
 https://github.com/aiortc/aiortc/tree/main/examples/server
 """

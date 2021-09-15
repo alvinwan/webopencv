@@ -22,6 +22,7 @@ def render_template(path, **kwargs):
         **kwargs,
         get_transform=transforms.get_transform,
         transforms=transforms.get_transform_ids(),
+        get_default_transform_id=transforms.get_default_transform_id,
     )
 
 

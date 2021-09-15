@@ -63,6 +63,8 @@ def cinematic(img, frame):
     img[:w//4] = 0
 ```
 
+**Default Transform**: Use `default=True` in the `transform` decorator to set a transform as the default on page load. Note that only 1 transform can be set as default. If no transform has `default=True` set, the default is no transform on page load.
+
 ## Customize Homepage
 
 To build a custom homepage:

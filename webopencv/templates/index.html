@@ -35,7 +35,7 @@ https://github.com/aiortc/aiortc/tree/main/examples/server
 <select id="video-transform">
     <option value="none" selected>No transform</option>
     {% for _id in transforms %}
-    <option value="{{ _id }}">{{ get_transform(_id)["name"] }}</option>
+    <option value="{{ _id }}" {% if _id == get_default_transform_id() %}selected{% endif %}>{{ get_transform(_id)["name"] }}</option>
     {% endfor %}
 </select>
 <button id="action"></button>

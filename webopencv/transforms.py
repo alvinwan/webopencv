@@ -2,6 +2,22 @@ import cv2
 
 
 _transforms = {}
+_default_transform_id = None
+
+
+def set_default_transform(name):
+    global _default_transform_id
+    if _default_transform_id is not None:
+        raise UserWarning(
+            f'Cannot set multiple default transformations. Trying'
+            f' to set transform {name} as default, but default already'
+            f' set to {_default_transform_id}'
+        )
+    _default_transform_id = _normalize_transform_name(name)
+
+
+def get_default_transform_id():
+    return _default_transform_id
 
 
 def add_transform(name, transform):

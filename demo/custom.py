@@ -1,7 +1,7 @@
 from aiohttp import web
 import webopencv as wcv
 
-app = wcv.WebApplication(use_default_homepage=False)
+app = wcv.WebApplication(use_default_homepage=False, framerate=5)
 
 html = """
 <html>

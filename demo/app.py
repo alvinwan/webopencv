@@ -12,7 +12,7 @@ import ssl
 import webopencv as wcv
 
 
-app = wcv.WebApplication()
+app = wcv.WebApplication(framerate=5)
 
 
 @app.transform('Cartoon')

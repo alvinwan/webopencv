@@ -1,6 +1,6 @@
 import webopencv as wcv
 
-app = wcv.WebApplication()
+app = wcv.WebApplication(framerate=5)
 
 @app.transform('Edge Detection', default=True)
 def edge_detection(img, frame):

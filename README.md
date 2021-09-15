@@ -44,7 +44,7 @@ Then, run the file.
 python app.py
 ```
 
-This launches a web server by default at `https://localhost:8080`. Navigate to that URL, and hit "Start" to see the demo in action.
+This launches a web server by default at `https://localhost:8080`. Navigate to that URL, and hit "Start" to see the demo in action. Note: When developing locally, navigating to `https://0.0.0.0:8080` won't work. Make sure to use `localhost`.
 
 ## Transforms
 

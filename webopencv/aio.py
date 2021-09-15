@@ -64,6 +64,6 @@ class App(web.Application):
         if use_default_homepage:
             self.router.add_get("/", index)
 
-    def run(self, host='localhost', *args, **kwargs):
+    def run(self, *args, **kwargs):
         """Light wrapper around aiohttp.web.run_app"""
-        return web.run_app(self, host=host, *args, **kwargs)
+        return web.run_app(self, *args, **kwargs)

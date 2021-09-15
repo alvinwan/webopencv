@@ -25,12 +25,12 @@ class VideoTransformTrack(MediaStreamTrack):
     async def recv(self):
         frame = await self.track.recv()
 
-        if self.transform in transforms.get_transform_names():
+        if self.transform in transforms.get_transform_ids():
             # convert from video frame to numpy array
             img = frame.to_ndarray(format="bgr24")
 
             # run image transformation
-            transform = transforms.get_transform(self.transform)
+            transform = transforms.get_transform(self.transform)["func"]
             img = transform(img, frame)
 
             # Write back to video frame, with timestamp

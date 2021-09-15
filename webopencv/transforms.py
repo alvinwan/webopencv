@@ -5,14 +5,17 @@ _transforms = {}
 
 
 def add_transform(name, transform):
-    _transforms[_normalize_transform_name(name)] = transform
+    _transforms[_normalize_transform_name(name)] = {
+        "name": name,
+        "func": transform
+    }
 
 
 def remove_transform(name):
     _transforms.pop(_normalize_transform_name(name))
 
 
-def get_transform_names():
+def get_transform_ids():
     return list(map(_normalize_transform_name, _transforms))
 
 

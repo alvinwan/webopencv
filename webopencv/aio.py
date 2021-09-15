@@ -1,24 +1,45 @@
 """aiohttp-powered web application backend"""
 
 from aiohttp import web
+from jinja2 import Environment, PackageLoader, select_autoescape
+
 from .app import on_offer, on_shutdown
 from .utils import ROOT
+from . import transforms
 
 import json
 import os
 
 
-def get_static_resource(path, **kwargs):
-    content = open(os.path.join(ROOT, path), "r").read()
-    return web.Response(text=content, **kwargs)
+jinja = Environment(
+    loader=PackageLoader("webopencv", ROOT),
+    autoescape=select_autoescape()
+)
+
+def render_template(path, **kwargs):
+    template = jinja.get_template(path)
+    return template.render(
+        **kwargs,
+        get_transform=transforms.get_transform,
+        transforms=transforms.get_transform_ids(),
+    )
+
+
+def get_static(path):
+    return open(os.path.join(ROOT, path), "r").read()
 
 
 async def index(request):
-    return get_static_resource("templates/index.html", content_type="text/html")
+    content = render_template(
+        "templates/index.html",
+        title="WebOpenCV Demo"
+    )
+    return web.Response(text=content, content_type="text/html")
 
 
 async def javascript(request):
-    return get_static_resource("static/client.js", content_type="application/javascript")
+    content = get_static("static/client.js")
+    return web.Response(text=content, content_type="application/javascript")
 
 
 async def offer(request):

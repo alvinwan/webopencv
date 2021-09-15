@@ -7,7 +7,7 @@ https://github.com/aiortc/aiortc/tree/main/examples/server
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebRTC demo</title>
+    <title>{{ title }}</title>
     <style>
     button {
         padding: 8px 16px;
@@ -59,9 +59,9 @@ https://github.com/aiortc/aiortc/tree/main/examples/server
     </select>
     <select id="video-transform">
         <option value="none" selected>No transform</option>
-        <option value="edge-detection">Edge detection</option>
-        <option value="cartoon">Cartoon effect</option>
-        <option value="rotate">Rotate</option>
+    {% for _id in transforms %}
+        <option value="{{ _id }}">{{ get_transform(_id)["name"] }}</option>
+    {% endfor %}
     </select>
     <select id="video-codec">
         <option value="default" selected>Default codecs</option>

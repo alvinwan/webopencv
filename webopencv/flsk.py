@@ -14,7 +14,6 @@ import os
 DEFAULT_TEMPLATE_FOLDER = os.path.join(ROOT, "templates")
 DEFAULT_STATIC_FOLDER = os.path.join(ROOT, "static")
 
-print(DEFAULT_STATIC_FOLDER)
 
 def index():
     return render_template("index.html")

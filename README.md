@@ -5,6 +5,8 @@ Stream webcam from a webpage to a server-side OpenCV Python script. This **gives
 
 👉 1-click WebOpenCV Setup: [Fork on Glitch](https://glitch.com/edit/#!/remix/webopencv)
 
+💻 View demo source: [on Glitch](https://glitch.com/edit/#!/webopencv) or [on Github](https://github.com/alvinwan/webopencv/tree/main/demo)
+
 created by [Alvin Wan](https://alvinwan.com), for an online computer vision tutorial
 
 ## Why Use WebOpenCV?

@@ -20,20 +20,18 @@ https://github.com/aiortc/aiortc/tree/main/examples/server
 
     video {
         width: 100%;
+        max-width:1280px;
     }
 
     .option {
         margin-bottom: 8px;
-    }
-
-    #media {
-        max-width: 1280px;
     }
     </style>
 </head>
 <body>
 
     <p>Select a transform, then hit "Start". After changing transforms, you'll need to restart the video feed.</p>
+    <p>Powered by <a href="https://github.com/alvinwan/webopencv">webopencv</a></p>
 <select id="video-transform">
     <option value="none" selected>No transform</option>
     {% for _id in transforms %}
@@ -101,9 +99,7 @@ https://github.com/aiortc/aiortc/tree/main/examples/server
     <pre id="answer-sdp"></pre>
 </details>
 
-<div id="media">
-    <video id="video" autoplay="true" playsinline="true"></video>
-</div>
+<video id="video" autoplay="true" playsinline="true"></video>
 
 <script src="client.js"></script>
 </body>

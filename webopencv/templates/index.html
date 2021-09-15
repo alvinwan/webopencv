@@ -31,7 +31,7 @@ https://github.com/aiortc/aiortc/tree/main/examples/server
 <body>
 
     <p>Select a transform, then hit "Start". After changing transforms, you'll need to restart the video feed.</p>
-    <p>Powered by <a href="https://github.com/alvinwan/webopencv">webopencv</a></p>
+    <p><b>Note:</b> This won't work from within an iframe embed, like the Glitch same-window preview. If viewing on Glitch, you will need to click "Show > In a New Window" at the top.</p>
 <select id="video-transform">
     <option value="none" selected>No transform</option>
     {% for _id in transforms %}
@@ -39,6 +39,7 @@ https://github.com/aiortc/aiortc/tree/main/examples/server
     {% endfor %}
 </select>
 <button id="action"></button>
+<p>Powered by <a href="https://github.com/alvinwan/webopencv">webopencv</a></p>
 
 <details>
     <summary>Advanced Options</summary>

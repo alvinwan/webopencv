@@ -1,4 +1,4 @@
-aiohttp==3.7.4
+aiohttp==3.7.4.post0
 aiortc==1.2.1
 opencv-python==4.5.3.56
 flask==2.0.1

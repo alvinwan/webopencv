@@ -9,25 +9,25 @@ import argparse
 import logging
 import ssl
 
-import wcv2
+import webopencv as wcv
 
 
-app = wcv2.WebApplication() # or wcv2.Flask() - make sure to remove `access_log=None` below
+app = wcv.WebApplication() # or wcv2.Flask() - make sure to remove `access_log=None` below
 
 
 @app.transform('Cartoon')
 def cartoon(img, frame):
-    return wcv2.transforms.cartoon(img, frame)
+    return wcv.transforms.cartoon(img, frame)
 
 
 @app.transform('Edge Detection')
 def edge_detection(img, frame):
-    return wcv2.transforms.edge_detection(img, frame)
+    return wcv.transforms.edge_detection(img, frame)
 
 
 @app.transform('Rotate')
 def rotate(img, frame):
-    return wcv2.transforms.rotate(img, frame)
+    return wcv.transforms.rotate(img, frame)
 
 
 if __name__ == "__main__":

@@ -24,9 +24,9 @@ pip install webopencv
 Create a new file `app.py`.
 
 ```python
-import wcv2
+import webopencv as wcv
 
-app = wcv2.WebApplication()
+app = wcv.WebApplication()
 
 @app.transform('Hello')
 def helloworld(img, frame):

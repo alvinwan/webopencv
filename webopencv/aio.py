@@ -26,21 +26,18 @@ def render_template(path, **kwargs):
     )
 
 
-def get_static(path):
-    return open(os.path.join(ROOT, path), "r").read()
+def get_index(**kwargs):
+    async def index(request):
+        content = render_template("templates/index.html", **kwargs)
+        return web.Response(text=content, content_type="text/html")
+    return index
 
 
-async def index(request):
-    content = render_template(
-        "templates/index.html",
-        title="WebOpenCV Demo"
-    )
-    return web.Response(text=content, content_type="text/html")
-
-
-async def javascript(request):
-    content = get_static("static/client.js")
-    return web.Response(text=content, content_type="application/javascript")
+def get_javascript(**kwargs):
+    async def javascript(request):
+        content = render_template("static/client.js", **kwargs)
+        return web.Response(text=content, content_type="application/javascript")
+    return javascript
 
 
 async def offer(request):
@@ -56,14 +53,14 @@ async def offer(request):
 
 class App(web.Application):
 
-    def __init__(self, use_default_homepage=True):
+    def __init__(self, use_default_homepage=True, framerate=15):
         super().__init__()
         self.on_shutdown.append(on_shutdown)
-        self.router.add_get("/client.js", javascript)
+        self.router.add_get("/client.js", get_javascript(framerate=framerate))
         self.router.add_post("/offer", offer)
 
         if use_default_homepage:
-            self.router.add_get("/", index)
+            self.router.add_get("/", get_index(title="WebOpenCV Demo"))
 
     def run(self, *args, **kwargs):
         """Light wrapper around aiohttp.web.run_app"""

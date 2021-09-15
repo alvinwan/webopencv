@@ -17,11 +17,11 @@ window.onload = function() {
     button.innerHTML = 'Start';
     button.addEventListener('click', function() {
         if (isVideoRunning) {
-            console.log('stopping...')
+            console.log('* Stopping...')
             stop();
             isVideoRunning = false;
         } else {
-            console.log('starting...')
+            console.log('* Starting...')
             start();
             isVideoRunning = true;
         }
@@ -181,10 +181,12 @@ window.onload = function() {
 
         var resolution = getElementByIdSafe('video-resolution').value;
         if (resolution) {
+            console.log(" * Setting framerate to {{ framerate }}")
             resolution = resolution.split('x');
             constraints.video = {
                 width: parseInt(resolution[0], 0),
-                height: parseInt(resolution[1], 0)
+                height: parseInt(resolution[1], 0),
+                frameRate: { max: parseInt("{{ framerate }}") } 
             };
         } else {
             constraints.video = true;

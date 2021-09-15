@@ -73,7 +73,7 @@ async def on_offer(params, sender):
         log_info("Track %s received", track.kind)
 
         local_video = VideoTransformTrack(
-            track, transform=params["video_transform"]
+            track, transform=params.get("video_transform", "none")
         )
         pc.addTrack(local_video)
 

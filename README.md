@@ -61,4 +61,61 @@ def cinematic(img, frame):
     img[:w//4] = 0
 ```
 
+## Customize Homepage
+
+To build a custom homepage:
+
+1. Initialize the app *without* the default homepage. You can use either the `aiohttp` or `Flask` backends.
+2. Add your own homepage with:
+    - WebOpenCV's client-side Javascript: `<script src="/client.js"></script>`
+    - a `video` tag with `id="video"`, for the webcam feed: `<video id="video" autoplay="true" playsinline="true"></video>`
+    - a `button` tag with `id="action"`, for "Start" and "Stop": `<button id="action"></button>` 
+
+**aiohttp**: The default backend uses `aiohttp`, so you can treat `app` as you would any other `web.Application` object.
+
+```python
+from aiohttp import web
+import webopencv as wcv
+
+app = wcv.WebApplication(use_default_homepage=False)
+
+html = """
+<html>
+    Custom webpage
+    <button id="action"></button>
+    <video id="video" autoplay="true" playsinline="true"></video>
+    <script src="/client.js"></script>
+</html>
+"""
+
+def index(app):
+    return web.Response(text=html, content_type="text/html")
+
+if __name__ == '__main__':
+    app.router.add_get_url('/', index)
+    app.run()
+```
+
+**Flask**: You can alternatively use the Flask backend, treating the `app` as you would any other `Flask` object. *Note that the Flask implementation drops the ICE connection. Needs debugging.*
+
+```python
+import webopencv as wcv
+
+app = wcv.Flask(use_default_homepage=False)
+
+@app.route("/")
+def index():
+    return """
+    <html>
+        Custom webpage
+        <button id="action"></button>
+        <video id="video" autoplay="true" playsinline="true"></video>
+        <script src="/client.js"></script>
+    </html>
+    """
+
+if __name__ == '__main__':
+    app.run()
+```
+
 *Acknowledgments: This library was built off of the `aiortc` official server example.*

@@ -35,6 +35,7 @@ class App(Flask):
             template_folder=DEFAULT_TEMPLATE_FOLDER,
             static_folder=DEFAULT_STATIC_FOLDER,
             static_url_path="",
+            use_default_homepage=True,
             **kwargs
         ):
         super().__init__(
@@ -44,6 +45,8 @@ class App(Flask):
             static_url_path=static_url_path,
             **kwargs
         )
-        self.add_url_rule("/", view_func=index)
         self.add_url_rule("/offer", view_func=offer, methods=["POST"])
-        atexit.register(on_shutdown)
+        # atexit.register(on_shutdown)  # TODO: doesn't actually work, because atexit doesn't await
+
+        if use_default_homepage:
+            self.add_url_rule("/", view_func=index)

@@ -55,12 +55,14 @@ async def offer(request):
 
 class App(web.Application):
 
-    def __init__(self):
+    def __init__(self, use_default_homepage=True):
         super().__init__()
         self.on_shutdown.append(on_shutdown)
-        self.router.add_get("/", index)
         self.router.add_get("/client.js", javascript)
         self.router.add_post("/offer", offer)
+
+        if use_default_homepage:
+            self.router.add_get("/", index)
 
     def run(self, host='localhost', *args, **kwargs):
         """Light wrapper around aiohttp.web.run_app"""

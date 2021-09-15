@@ -1,6 +1,6 @@
 import webopencv as wcv
 
-app = wcv.WebApplication() # or wcv2.Flask()
+app = wcv.WebApplication()
 
 @app.transform('Edge Detection')
 def edge_detection(img, frame):

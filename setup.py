@@ -11,7 +11,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="webopencv",
-    version="0.0.1",
+    version="0.0.1.3",
     author="Alvin Wan",
     author_email="hi@alvinwan.com",
     description="Stream live video feed from a webpage to a server-side python openCV script",
@@ -29,5 +29,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=["webopencv"],
+    include_package_data=True,
     python_requires=">=3.6",
 )

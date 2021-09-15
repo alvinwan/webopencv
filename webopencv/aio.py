@@ -41,6 +41,6 @@ class App(web.Application):
         self.router.add_get("/client.js", javascript)
         self.router.add_post("/offer", offer)
 
-    def run(self, *args, **kwargs):
+    def run(self, host='localhost', *args, **kwargs):
         """Light wrapper around aiohttp.web.run_app"""
-        return web.run_app(self, *args, **kwargs)
+        return web.run_app(self, host=host, *args, **kwargs)

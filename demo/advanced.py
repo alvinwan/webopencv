@@ -12,7 +12,7 @@ import ssl
 import webopencv as wcv
 
 
-app = wcv.WebApplication() # or wcv2.Flask() - make sure to remove `access_log=None` below
+app = wcv.WebApplication()
 
 
 @app.transform('Cartoon')
